@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:myapp/getx/counter_controller.dart';
 
 class HomeGetX extends StatelessWidget {
-  int _counter = 0;
-
-  void _incrementCounter() {
-      _counter++;
-  }
-
   @override
   Widget build(BuildContext context) {
+    final controller = CounterGetXController();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -21,15 +19,17 @@ class HomeGetX extends StatelessWidget {
             const Text(
               'You have pushed the button this many times:',
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+            Obx(() => Text(
+                  '${controller.counter}',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                )),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {
+          controller.increment();
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.

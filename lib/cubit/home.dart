@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CubitHome extends StatelessWidget {
+class HomeCubit extends StatelessWidget {
   int _counter = 0;
 
   void _incrementCounter() {

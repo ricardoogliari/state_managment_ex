@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myapp/config/routes.dart';
+import 'package:myapp/cubit/counter_controller.dart';
 import 'package:myapp/cubit/home.dart';
 import 'package:myapp/getx/home.dart';
 import 'package:myapp/provider/counter_controller.dart';
@@ -29,7 +31,10 @@ class MyApp extends StatelessWidget {
           create: (context) => CounterProviderController(),
           child: HomeProvider(),
         ),
-        cubitHomeRoute: (context) => HomeCubit()
+        cubitHomeRoute: (context) => BlocProvider(
+          create: (context) => CounterCubitController(),
+          child: HomeCubit(),
+        )
       },
     );
   }

@@ -38,8 +38,30 @@ class MyHomePage extends StatelessWidget {
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: const Text("Choose your mode"),
         ),
-        body:
-            ListView() // This trailing comma makes auto-formatting nicer for build methods.
-        );
+        body: ListView(
+          children: [
+            ListTile(
+              title: const Text("GetX"),
+              trailing: const Icon(Icons.arrow_forward),
+              onTap: () {
+                Navigator.pushNamed(context, getxHomeRoute);
+              },
+            ),
+            ListTile(
+              title: const Text("Provider"),
+              trailing: const Icon(Icons.arrow_forward),
+              onTap: () {
+                Navigator.pushNamed(context, providerHomeRoute);
+              },
+            ),
+            ListTile(
+              title: const Text("Cubit"),
+              trailing: const Icon(Icons.arrow_forward),
+              onTap: () {
+                Navigator.pushNamed(context, cubitHomeRoute);
+              },
+            ),
+          ],
+        ));
   }
 }

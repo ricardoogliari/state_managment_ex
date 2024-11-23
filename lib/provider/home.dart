@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/provider/counter_controller.dart';
+import 'package:provider/provider.dart';
 
 class HomeProvider extends StatelessWidget {
-  
-  int _counter = 0;
-
-  void _incrementCounter() {
-    _counter++;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,15 +17,20 @@ class HomeProvider extends StatelessWidget {
             const Text(
               'You have pushed the button this many times:',
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+            Consumer<CounterProviderController>(
+                builder: (context, value, child) => Text(
+                      '${value.counter}',
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ))
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {
+          Provider
+            .of<CounterProviderController>(context, listen: false)
+            .increment();
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.

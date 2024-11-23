@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:myapp/config/routes.dart';
 import 'package:myapp/cubit/home.dart';
 import 'package:myapp/getx/home.dart';
+import 'package:myapp/provider/counter_controller.dart';
 import 'package:myapp/provider/home.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +25,10 @@ class MyApp extends StatelessWidget {
       routes: {
         homeRoute: (context) => MyHomePage(),
         getxHomeRoute: (context) => HomeGetX(),
-        providerHomeRoute: (context) => HomeProvider(),
+        providerHomeRoute: (context) => ChangeNotifierProvider(
+          create: (context) => CounterProviderController(),
+          child: HomeProvider(),
+        ),
         cubitHomeRoute: (context) => HomeCubit()
       },
     );
